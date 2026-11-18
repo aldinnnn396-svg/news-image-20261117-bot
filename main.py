@@ -13,3 +13,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+# The entry copies the bundled artwork to the output entry image.
