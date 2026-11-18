@@ -1,16 +1,16 @@
 import os
+import pathlib
 import shutil
 
+
 def main():
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    art_path = os.path.join(base_dir, "art.jpg")
-    output_dir = os.environ.get("MAKEFUN_OUTPUT_DIR")
-    if not output_dir:
-        output_dir = "/output"
-    os.makedirs(output_dir, exist_ok=True)
-    entry_path = os.path.join(output_dir, "entry.png")
+    program_dir = pathlib.Path(__file__).resolve().parent
+    art_path = program_dir / "art.jpg"
+    output_dir = pathlib.Path(os.environ.get("MAKEFUN_OUTPUT_DIR") or "/output")
+    output_dir.mkdir(parents=True, exist_ok=True)
+    entry_path = output_dir / "entry.png"
     shutil.copyfile(art_path, entry_path)
+
 
 if __name__ == "__main__":
     main()
-# The entry copies the bundled artwork to the output entry image.
